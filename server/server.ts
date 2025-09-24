@@ -7,18 +7,18 @@ const app = express();
 // Set the port
 const PORT = 3000;
 
-//  Basic route
-app.get("/", (req, res) => {
-  res.send("Welcome to our API!");
+// Middleware
+app.use(express.json());
+
+//  Get -Greet
+app.get("/greet", (req, res) => {
+  res.send("Hello, developer!");
 });
 
-// user route
-app.get("/users", (req, res) => {
-  const users = [
-    { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Smith" },
-  ];
-  res.json(users);
+// Post - Submit
+app.post("/submit", (req, res) => {
+  const { name, age } = req.body;
+  res.json(`Hello, ${name}. You are ${age} years old.`);
 });
 
 // Start the server
